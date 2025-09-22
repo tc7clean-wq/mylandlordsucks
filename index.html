@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyLandlordSucks - Know Your Rights, Fight Back</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #dc2626;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        main {
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: #dc2626;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #b91c1c;
+        }
+
+        .content-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #dc2626;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: #333;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .blog-post {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-post h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .blog-post-full {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .blog-post.active .blog-post-full {
+            display: block;
+        }
+
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .rights-card {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #dc2626;
+        }
+
+        .template-box {
+            background: #fef3c7;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 2px dashed #f59e0b;
+        }
+
+        .template-box h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+
+        .template-box pre {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .warning {
+            background: #fee2e2;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #dc2626;
+            margin: 1rem 0;
+        }
+
+        .success {
+            background: #d1fae5;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #10b981;
+            margin: 1rem 0;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .state-selector {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #dc2626;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .rights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .copy-button {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .copy-button:hover {
+            background: #b91c1c;
+        }
+
+        #submitStory {
+            display: none;
+        }
+
+        .story-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .story-form input, .story-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .story-form button {
+            background: #dc2626;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .resource-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .resource-links a {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            border: 2px solid #dc2626;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .resource-links a:hover {
+            background: #dc2626;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🏠💔 MyLandlordSucks</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#rights">Your Rights</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#templates">Templates</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>Your Landlord Isn't Above the Law</h1>
+            <p>Know your rights. Fight back. Get what you're owed.</p>
+            <button class="cta-button" onclick="scrollToSection('rights')">Learn Your Rights Now</button>
+        </section>
+
+        <section id="rights" class="content-section">
+            <h2>Your Rights as a Tenant</h2>
+            <div class="state-selector">
+                <label for="state">Select Your State for Specific Laws:</label>
+                <select id="state" onchange="updateStateLaws()">
+                    <option value="">Choose State...</option>
+                    <option value="CA">California</option>
+                    <option value="NY">New York</option>
+                    <option value="TX">Texas</option>
+                    <option value="FL">Florida</option>
+                    <option value="IL">Illinois</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="OH">Ohio</option>
+                    <option value="GA">Georgia</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="MI">Michigan</option>
+                </select>
+            </div>
+            
+            <div id="stateInfo"></div>
+
+            <div class="rights-grid">
+                <div class="rights-card">
+                    <h3>🚪 Entry Notice</h3>
+                    <p>Your landlord MUST give 24-48 hours notice before entering (except emergencies). Violation = $500-5,000 in fines.</p>
+                </div>
+                <div class="rights-card">
+                    <h3>💰 Security Deposit</h3>
+                    <p>Must be returned within 21-30 days with itemized deductions. Wrongful withholding = 2-3x damages.</p>
+                </div>
+                <div class="rights-card">
+                    <h3>🔧 Repairs</h3>
+                    <p>Major repairs must be completed within 7-14 days. You can "repair and deduct" from rent if ignored.</p>
+                </div>
+                <div class="rights-card">
+                    <h3>🏠 Habitability</h3>
+                    <p>Your unit must have working heat, water, electricity. Uninhabitable = immediate lease termination right.</p>
+                </div>
+                <div class="rights-card">
+                    <h3>🐕 ESA/Service Animals</h3>
+                    <p>No pet fees or breed restrictions for emotional support or service animals. It's federal law.</p>
+                </div>
+                <div class="rights-card">
+                    <h3>⚖️ Retaliation</h3>
+                    <p>Landlord can't evict or raise rent for 180 days after you report them to authorities.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog">
+            <h2>Latest Posts - Click to Read Full Article</h2>
+            
+            <article class="blog-post" onclick="togglePost(this)">
+                <h3>The Security Deposit Scam - How to Get Every Penny Back</h3>
+                <p>Your landlord is already planning to keep your deposit. Here's how to stop them...</p>
+                <div class="blog-post-full">
+                    <p>Listen, your landlord is already planning to keep your deposit. They've been thinking about it since the day you moved in. That "normal wear and tear" they're going to charge you for? They know it's illegal. They're counting on you not fighting back.</p>
+                    
+                    <h4>Document Everything on Day One</h4>
+                    <p>Before you move a single box, video EVERYTHING. Every wall, every corner, every pre-existing scratch. Upload it to Google Drive with timestamps. Email it to yourself. This is your golden ticket.</p>
+                    
+                    <h4>The Magic Pre-Move Out Letter</h4>
+                    <p>30 days before leaving, send this: "Per state law, I request a pre-move out inspection to identify any issues that would affect my security deposit return." Most landlords don't know they're legally required to offer this in many states.</p>
+                    
+                    <h4>The Nuclear Option That Works</h4>
+                    <p>Small claims court. It costs $30-50 to file, you don't need a lawyer, and in most states, if the landlord wrongly withheld your deposit, they owe TRIPLE damages. That $2,000 deposit they stole? Now they owe you $6,000.</p>
+                    
+                    <div class="warning">
+                        <strong>⚠️ Important:</strong> The 21-Day Rule - In most states, landlords have 21 days to return your deposit or provide an itemized list. Day 22? They've forfeited their right to keep ANY of it.
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post" onclick="togglePost(this)">
+                <h3>Your Landlord Entered Without Notice? Here's Your Payday</h3>
+                <p>That "surprise inspection" is illegal in 49 states and could be worth thousands...</p>
+                <div class="blog-post-full">
+                    <p>That "surprise inspection" your landlord pulled last week? In 49 states, it's illegal. Not just wrong - ILLEGAL. And it could be worth thousands in your pocket if you play this right.</p>
+                    
+                    <h4>What the Law Actually Says</h4>
+                    <p>Unless it's a genuine emergency (fire, flood, gas leak), your landlord MUST give you written notice before entering:</p>
+                    <ul>
+                        <li>California: 24 hours</li>
+                        <li>New York: "Reasonable notice"</li>
+                        <li>Texas: 24 hours</li>
+                        <li>Florida: 12 hours</li>
+                        <li>Most states: 24-48 hours</li>
+                    </ul>
+                    
+                    <h4>Document the Violation Like a Pro</h4>
+                    <p>The moment they leave:</p>
+                    <ol>
+                        <li>Write down exact time, date, and what they did</li>
+                        <li>Text them: "You entered my apartment at [time] without notice. Please confirm you were here."</li>
+                        <li>Install a $30 camera from Amazon (yes, you can legally film your own apartment)</li>
+                    </ol>
+                    
+                    <div class="success">
+                        <strong>💰 Potential Payout:</strong> Courts award $500-5,000 per violation. Document everything and get paid.
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post" onclick="togglePost(this)">
+                <h3>Magic Words That Make Landlords Fix Things in 48 Hours</h3>
+                <p>Stop begging for repairs. Use these exact phrases to get immediate action...</p>
+                <div class="blog-post-full">
+                    <p>Your ceiling's been leaking for three weeks. The heater broke in January. Your landlord's ignoring you, but here are the exact words that make them jump.</p>
+                    
+                    <h4>The "U" Word That Changes Everything</h4>
+                    <p>"Uninhabitable." The moment you declare your unit uninhabitable due to their negligence, the clock starts ticking on serious legal consequences for them.</p>
+                    
+                    <h4>The Email That Gets Instant Results</h4>
+                    <div class="template-box">
+                        <h4>Copy This Email Template:</h4>
+                        <pre>Subject: Formal Notice of Breach - Habitability Issues Requiring Immediate Remedy
+
+This serves as formal written notice that the following conditions make my unit uninhabitable under state Civil Code:
+
+- [Issue] reported on [date], unresolved for [X] days
+- This violates implied warranty of habitability
+
+If not remedied within 48 hours, I will:
+1. Hire licensed contractors and deduct from rent
+2. Report to Health Department
+3. Pursue rent abatement
+4. Seek temporary housing at your expense
+
+This notice is sent on [date] at [time].</pre>
+                        <button class="copy-button" onclick="copyTemplate(this)">Copy Template</button>
+                    </div>
+                    
+                    <div class="warning">
+                        <strong>Know Your Rights:</strong> Most states allow "repair and deduct" if you gave written notice and the landlord had reasonable time to fix issues affecting habitability.
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post" onclick="togglePost(this)">
+                <h3>How to Break Your Lease Without Losing a Penny</h3>
+                <p>8 months left on your lease? Here's how to walk away free and clear...</p>
+                <div class="blog-post-full">
+                    <p>Need to leave but have months left on your lease? Your landlord says you'll owe thousands? Here's how to walk away free and clear, completely legally.</p>
+                    
+                    <h4>The "Uninhabitable Conditions" Exit</h4>
+                    <p>Document any of these:</p>
+                    <ul>
+                        <li>Mold (even small amounts)</li>
+                        <li>Pest infestation</li>
+                        <li>Broken heat/AC for 48+ hours</li>
+                        <li>Water leaks</li>
+                        <li>Security issues (broken locks, doors)</li>
+                    </ul>
+                    <p>One certified letter declaring uninhabitable = lease broken, legally.</p>
+                    
+                    <h4>The "Mitigation of Damages" Rule</h4>
+                    <p>In most states, landlords MUST try to re-rent your unit. They can't just let it sit empty and charge you. Demand proof they're advertising it. No proof = you owe nothing.</p>
+                    
+                    <h4>The "Cash for Keys" Reversal</h4>
+                    <p>Offer: "I'll leave this weekend, unit in perfect condition, if you release me from the lease and return my deposit." 70% of landlords accept this.</p>
+                </div>
+            </article>
+        </section>
+
+        <section id="templates" class="content-section">
+            <h2>Letter Templates That Actually Work</h2>
+            
+            <div class="template-box">
+                <h4>Security Deposit Demand Letter</h4>
+                <pre>Dear [Landlord Name],
+
+This letter serves as formal demand for the return of my security deposit of $[amount] for the property at [address].
+
+I vacated the premises on [date], leaving the unit in clean condition with only normal wear and tear. Under [state] law, you had 21 days to return my deposit or provide an itemized list of deductions with receipts.
+
+As of today, [X] days have passed without receipt of my deposit or itemized statement. Per state statute [code], you have forfeited your right to withhold any portion of my deposit.
+
+Please remit the full deposit amount of $[amount] within 5 business days to avoid legal action, which may result in treble damages plus attorney fees.
+
+Sincerely,
+[Your name]
+[Date]</pre>
+                <button class="copy-button" onclick="copyTemplate(this)">Copy Template</button>
+            </div>
+
+            <div class="template-box">
+                <h4>Repair Request - Legal Notice</h4>
+                <pre>Dear [Landlord Name],
+
+FORMAL NOTICE - URGENT REPAIR REQUIRED
+
+This serves as written notice that the following conditions in my unit at [address] require immediate repair:
+
+[List specific issues with dates first reported]
+
+These conditions violate the implied warranty of habitability under [state] Civil Code Section [X]. If repairs are not completed within 48 hours of this notice, I will exercise my rights under state law to:
+
+1. Hire licensed contractors and deduct costs from rent
+2. Withhold rent until habitability is restored
+3. Report violations to city/county health department
+4. Pursue all available legal remedies
+
+Time is of the essence.
+
+[Your name]
+[Date]</pre>
+                <button class="copy-button" onclick="copyTemplate(this)">Copy Template</button>
+            </div>
+
+            <div class="template-box">
+                <h4>Illegal Entry Complaint</h4>
+                <pre>Dear [Landlord Name],
+
+On [date] at [time], you entered my unit at [address] without providing the legally required notice under [state] law.
+
+This violation of my right to quiet enjoyment and privacy is unacceptable and illegal. State law requires [24/48] hours written notice for non-emergency entry.
+
+This letter serves as formal notice that:
+1. Any future entry without proper notice will be documented
+2. I am installing security cameras to monitor my unit
+3. Continued violations will result in legal action for damages
+
+I expect written acknowledgment of this notice and your commitment to following legal entry requirements.
+
+[Your name]
+[Date]</pre>
+                <button class="copy-button" onclick="copyTemplate(this)">Copy Template</button>
+            </div>
+        </section>
+
+        <section id="resources" class="content-section">
+            <h2>Resources & Help</h2>
+            
+            <div class="resource-links">
+                <a href="https://www.hud.gov/fairhousing" target="_blank">File HUD Complaint</a>
+                <a href="https://www.usa.gov/state-consumer" target="_blank">State Consumer Protection</a>
+                <a href="https://www.lsc.gov/what-legal-aid/find-legal-aid" target="_blank">Find Legal Aid</a>
+                <a href="https://www.nolo.com/legal-encyclopedia/tenants-rights" target="_blank">Tenant Rights Guide</a>
+            </div>
+
+            <div class="warning" style="margin-top: 2rem;">
+                <h3>⚠️ When to Get a Lawyer</h3>
+                <p>Consider legal help if:</p>
+                <ul>
+                    <li>You're being evicted</li>
+                    <li>Damages exceed small claims limit ($5,000-10,000)</li>
+                    <li>You've been injured due to landlord negligence</li>
+                    <li>You're facing discrimination</li>
+                </ul>
+                <p><strong>Many tenant lawyers work on contingency - you pay nothing unless you win.</strong></p>
+            </div>
+        </section>
+
+        <section id="submitStory" class="content-section">
+            <h2>Share Your Landlord Horror Story</h2>
+            <div class="story-form">
+                <input type="text" placeholder="Your Name (or Anonymous)" id="storyName">
+                <input type="text" placeholder="City, State" id="storyLocation">
+                <textarea placeholder="Tell us your story..." id="storyText" rows="10"></textarea>
+                <button onclick="submitStory()">Submit Story</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 MyLandlordSucks.com - Fighting for Tenant Rights</p>
+        <p>Not legal advice. Consult a lawyer for specific situations.</p>
+    </footer>
+
+    <script>
+        function togglePost(element) {
+            element.classList.toggle('active');
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyTemplate(button) {
+            const pre = button.previousElementSibling;
+            const text = pre.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy Template';
+                }, 2000);
+            });
+        }
+
+        function updateStateLaws() {
+            const state = document.getElementById('state').value;
+            const stateInfo = document.getElementById('stateInfo');
+            
+            const stateLaws = {
+                'CA': {
+                    notice: '24 hours',
+                    deposit: '21 days',
+                    penalty: 'Up to $5,000 + 3x deposit for bad faith'
+                },
+                'NY': {
+                    notice: 'Reasonable notice',
+                    deposit: '14 days',
+                    penalty: '2x deposit for wrongful withholding'
+                },
+                'TX': {
+                    notice: '24 hours',
+                    deposit: '30 days',
+                    penalty: '3x deposit + $100 for bad faith'
+                },
+                'FL': {
+                    notice: '12 hours',
+                    deposit: '15 days',
+                    penalty: 'Forfeiture of right to deposit'
+                }
+            };
+
+            if (state && stateLaws[state]) {
+                const laws = stateLaws[state];
+                stateInfo.innerHTML = `
+                    <div class="success">
+                        <h3>Your State's Key Laws:</h3>
+                        <p><strong>Entry Notice Required:</strong> ${laws.notice}</p>
+                        <p><strong>Deposit Return Timeline:</strong> ${laws.deposit}</p>
+                        <p><strong>Penalties for Violations:</strong> ${laws.penalty}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function submitStory() {
+            const name = document.getElementById('storyName').value || 'Anonymous';
+            const location = document.getElementById('storyLocation').value;
+            const story = document.getElementById('storyText').value;
+            
+            if (story) {
+                alert(`Thank you for sharing your story, ${name}! We'll review and post it soon.`);
+                // In real implementation, this would send to a backend
+                document.getElementById('storyName').value = '';
+                document.getElementById('storyLocation').value = '';
+                document.getElementById('storyText').value = '';
+            }
+        }
+
+        // Add smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
